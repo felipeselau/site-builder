@@ -1,0 +1,9 @@
+<section class="hero" style="background: {{ section.props.backgroundColor }}; color: {{ section.props.textColor }}; padding: 96px 20px; text-align: center;">
+  <div class="container">
+    <h1 style="font-size: 48px; margin-bottom: 24px;">{{ section.props.title }}</h1>
+    <p style="font-size: 20px; margin-bottom: 32px; opacity: 0.9;">{{ section.props.subtitle }}</p>
+    {% if section.props.ctaText %}
+    <a href="{{ section.props.ctaLink }}" style="display: inline-block; background: var(--color-primary); color: white; padding: 16px 32px; border-radius: 8px; font-weight: 600; text-decoration: none;">{{ section.props.ctaText }}</a>
+    {% endif %}
+  </div>
+</section>

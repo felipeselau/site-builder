@@ -1,0 +1,13 @@
+<section class="cta" style="background: {{ section.props.backgroundColor }}; padding: 80px 20px; text-align: center; color: white;">
+  <div class="container">
+    {% if section.props.title %}
+    <h2 style="font-size: 36px; margin-bottom: 16px;">{{ section.props.title }}</h2>
+    {% endif %}
+    {% if section.props.subtitle %}
+    <p style="font-size: 20px; margin-bottom: 32px; opacity: 0.9;">{{ section.props.subtitle }}</p>
+    {% endif %}
+    {% if section.props.buttonText %}
+    <a href="{{ section.props.buttonLink }}" style="display: inline-block; background: white; color: {{ section.props.backgroundColor }}; padding: 16px 32px; border-radius: 8px; font-weight: 600; font-size: 18px;">{{ section.props.buttonText }}</a>
+    {% endif %}
+  </div>
+</section>

@@ -1,0 +1,42 @@
+export default {
+  "slug": "home",
+  "title": "Home",
+  "seo": {
+    "title": "My Site - Home",
+    "description": "Welcome to my site"
+  },
+  "sections": [
+    {
+      "id": "1",
+      "type": "hero",
+      "props": {
+        "title": "Build Faster with Our Site Builder",
+        "subtitle": "Create beautiful websites in minutes with our easy-to-use block-based editor",
+        "ctaText": "Get Started",
+        "ctaLink": "#",
+        "backgroundColor": "#1a1a2e",
+        "textColor": "#ffffff"
+      }
+    },
+    {
+      "id": "2",
+      "type": "content",
+      "props": {
+        "heading": "About Our Platform",
+        "content": "We provide the tools you need to build stunning websites without any coding knowledge.",
+        "alignment": "left"
+      }
+    },
+    {
+      "id": "3",
+      "type": "cta",
+      "props": {
+        "title": "Ready to Get Started?",
+        "subtitle": "Join thousands of satisfied customers today.",
+        "buttonText": "Sign Up Free",
+        "buttonLink": "#",
+        "backgroundColor": "#4f46e5"
+      }
+    }
+  ]
+};

@@ -1,0 +1,12 @@
+<section class="content" style="padding: 64px 20px;">
+  <div class="container" style="text-align: {{ section.props.alignment }};">
+    {% if section.props.heading %}
+    <h2 style="font-size: 36px; margin-bottom: 24px;">{{ section.props.heading }}</h2>
+    {% endif %}
+    {% if section.props.content %}
+    <div style="font-size: 18px; line-height: 1.7; color: var(--color-text-light);">
+      {{ section.props.content }}
+    </div>
+    {% endif %}
+  </div>
+</section>

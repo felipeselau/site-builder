@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <style>
+    :root {
+      --color-primary: #4f46e5;
+      --color-primary-dark: #4338ca;
+      --color-secondary: #10b981;
+      --color-background: #ffffff;
+      --color-background-alt: #f9fafb;
+      --color-text: #1f2937;
+      --color-text-light: #6b7280;
+      --color-border: #e5e7eb;
+      --font-family: system-ui, -apple-system, sans-serif;
+      --font-family-heading: system-ui, -apple-system, sans-serif;
+      --font-size-base: 16px;
+      --line-height: 1.5;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font-family); font-size: var(--font-size-base); line-height: var(--line-height); color: var(--color-text); background: var(--color-background); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    h1, h2, h3, h4, h5, h6 { font-family: var(--font-family-heading); font-weight: 600; line-height: 1.2; }
+    a { color: var(--color-primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; height: auto; }
+  </style>
+</head>
+<body>
+  <main>
+    {{ content | safe }}
+  </main>
+</body>
+</html>

@@ -1,0 +1,45 @@
+---
+layout: layouts/base.liquid
+---
+
+{% for section in home.sections %}
+  {% case section.type %}
+    {% when "hero" %}
+      <section class="hero" style="background: {{ section.props.backgroundColor }}; color: {{ section.props.textColor }}; padding: 96px 20px; text-align: center;">
+        <div class="container">
+          <h1 style="font-size: 48px; margin-bottom: 24px;">{{ section.props.title }}</h1>
+          <p style="font-size: 20px; margin-bottom: 32px; opacity: 0.9;">{{ section.props.subtitle }}</p>
+          {% if section.props.ctaText %}
+          <a href="{{ section.props.ctaLink }}" style="display: inline-block; background: #4f46e5; color: white; padding: 16px 32px; border-radius: 8px; font-weight: 600; text-decoration: none;">{{ section.props.ctaText }}</a>
+          {% endif %}
+        </div>
+      </section>
+    {% when "content" %}
+      <section class="content" style="padding: 64px 20px;">
+        <div class="container" style="text-align: {{ section.props.alignment }};">
+          {% if section.props.heading %}
+          <h2 style="font-size: 36px; margin-bottom: 24px;">{{ section.props.heading }}</h2>
+          {% endif %}
+          {% if section.props.content %}
+          <div style="font-size: 18px; line-height: 1.7; color: #6b7280;">
+            {{ section.props.content }}
+          </div>
+          {% endif %}
+        </div>
+      </section>
+    {% when "cta" %}
+      <section class="cta" style="background: {{ section.props.backgroundColor }}; padding: 80px 20px; text-align: center; color: white;">
+        <div class="container">
+          {% if section.props.title %}
+          <h2 style="font-size: 36px; margin-bottom: 16px;">{{ section.props.title }}</h2>
+          {% endif %}
+          {% if section.props.subtitle %}
+          <p style="font-size: 20px; margin-bottom: 32px; opacity: 0.9;">{{ section.props.subtitle }}</p>
+          {% endif %}
+          {% if section.props.buttonText %}
+          <a href="{{ section.props.buttonLink }}" style="display: inline-block; background: white; color: {{ section.props.backgroundColor }}; padding: 16px 32px; border-radius: 8px; font-weight: 600; font-size: 18px;">{{ section.props.buttonText }}</a>
+          {% endif %}
+        </div>
+      </section>
+  {% endcase %}
+{% endfor %}

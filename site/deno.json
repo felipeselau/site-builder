@@ -1,0 +1,15 @@
+{
+  "tasks": {
+    "dev": "deno run -A https://cdn.jsdelivr.net/gh/lumeland/lume@v2.3.0/cli.ts --serve",
+    "build": "deno run -A https://cdn.jsdelivr.net/gh/lumeland/lume@v2.3.0/cli.ts",
+    "cms": "deno run -A https://cdn.jsdelivr.net/gh/lumeland/lume@v2.3.0/cli.ts cms"
+  },
+  "imports": {
+    "lume/": "https://cdn.jsdelivr.net/gh/lumeland/lume@v2.3.0/",
+    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@v0.5.0/"
+  },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "lume"
+  }
+}

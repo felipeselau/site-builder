@@ -1,0 +1,11 @@
+node_modules/
+dist/
+_site/
+.DS_Store
+*.log
+.env
+.env.local
+skills-lock.json
+.agents/skills/*
+!.agents/skills/find-skills
+!.agents/skills/grill-me

@@ -1,0 +1,15 @@
+<section class="features" style="padding: 64px 20px; background: var(--color-background-alt);">
+  <div class="container">
+    {% if section.props.title %}
+    <h2 style="font-size: 36px; text-align: center; margin-bottom: 48px;">{{ section.props.title }}</h2>
+    {% endif %}
+    <div class="features-grid" style="display: grid; grid-template-columns: repeat({{ section.props.columns }}, 1fr); gap: 32px;">
+      {% for feature in section.props.features %}
+      <div class="feature-card" style="background: white; padding: 32px; border-radius: 12px; box-shadow: var(--shadows-sm);">
+        <div style="width: 48px; height: 48px; background: var(--color-primary); border-radius: 8px; margin-bottom: 16px;"></div>
+        <h3 style="font-size: 20px; margin-bottom: 12px;">{{ feature }}</h3>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
