@@ -1,12 +1,16 @@
 import { defineConfig } from 'vite';
 import solid from 'vite-plugin-solid';
-import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname, resolve } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export default defineConfig({
   plugins: [solid()],
   resolve: {
     alias: {
-      '@shared': path.resolve(__dirname, '../../shared'),
+      '@shared': resolve(__dirname, '../../shared'),
     },
   },
   server: {
