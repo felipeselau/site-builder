@@ -1,6 +1,6 @@
 import { createStore } from 'solid-js/store';
-import type { PageData, Section } from '@shared/types';
-import { blockRegistry } from '@shared/block-registry';
+import type { PageData, Section } from '../../shared/types';
+import { blockRegistry } from '../../shared/block-registry';
 
 function generateId(): string {
   return Math.random().toString(36).substr(2, 9);

@@ -1,5 +1,5 @@
 import { Component, createSignal, For, Show, onMount } from 'solid-js';
-import { blockRegistry } from '@shared/block-registry';
+import { blockRegistry } from './shared/block-registry';
 import { useStore } from './stores/builder';
 
 const BlockPicker: Component = () => {
