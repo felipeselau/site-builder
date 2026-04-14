@@ -9,20 +9,27 @@ CMS_PID=$!
 
 sleep 2
 
-echo "Starting Lume dev server on port 3000..."
+echo "Starting Lume dev server on port 3001..."
 deno task dev &
 LUME_PID=$!
+
+cd ../builder-admin
+
+echo "Starting Builder Admin on port 3000..."
+npm run dev &
+BUILDER_PID=$!
 
 echo ""
 echo "=========================================="
 echo "  Site Builder is running!"
 echo "=========================================="
-echo "  CMS Admin:   http://localhost:8000/admin"
-echo "  Site Preview: http://localhost:3000"
+echo "  Builder Admin: http://localhost:3000"
+echo "  Site Preview:  http://localhost:3001"
+echo "  CMS API:       http://localhost:8000"
 echo ""
 echo "  Press Ctrl+C to stop all servers"
 echo "=========================================="
 
-trap "kill $CMS_PID $LUME_PID 2>/dev/null" EXIT
+trap "kill $CMS_PID $LUME_PID $BUILDER_PID 2>/dev/null" EXIT
 
 wait

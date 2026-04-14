@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "dev": "deno run -A https://cdn.jsdelivr.net/gh/lumeland/lume@v2.3.0/cli.ts --serve",
+    "dev": "deno run -A https://cdn.jsdelivr.net/gh/lumeland/lume@v2.3.0/cli.ts --serve --port=3001",
     "build": "deno run -A https://cdn.jsdelivr.net/gh/lumeland/lume@v2.3.0/cli.ts",
     "cms": "deno run -A https://cdn.jsdelivr.net/gh/lumeland/lume@v2.3.0/cli.ts cms"
   },

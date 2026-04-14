@@ -1,4 +1,4 @@
-import { Component, createSignal, For, Show } from 'solid-js';
+import { Component, createSignal, For, Show, onMount } from 'solid-js';
 import { blockRegistry } from '../../shared/block-registry';
 import { useStore } from './stores/builder';
 
@@ -115,14 +115,21 @@ const Inspector: Component = () => {
 };
 
 const Canvas: Component = () => {
-  const { state, savePage } = useStore();
+  const { state, savePage, rebuildSite, initPage } = useStore();
   const [loading, setLoading] = createSignal(false);
+  const [previewKey, setPreviewKey] = createSignal(0);
 
   const handleSave = async () => {
     setLoading(true);
     await savePage();
+    await rebuildSite();
+    setPreviewKey(k => k + 1);
     setLoading(false);
   };
+
+  onMount(() => {
+    initPage();
+  });
 
   return (
     <div class="canvas">
@@ -133,10 +140,12 @@ const Canvas: Component = () => {
         </button>
       </div>
       <div class="preview-area">
-        <div class="preview-placeholder">
-          <p>Preview will render here</p>
-          <p class="hint">Connect to Lume dev server for live preview</p>
-        </div>
+        <iframe 
+          src="http://localhost:3001" 
+          key={previewKey()}
+          class="preview-iframe"
+          title="Site Preview"
+        />
       </div>
     </div>
   );

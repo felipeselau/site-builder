@@ -108,6 +108,15 @@ export const useStore = () => {
     }
   };
 
+  const rebuildSite = async () => {
+    const response = await fetch('/api/rebuild', { method: 'POST' });
+    return response.ok;
+  };
+
+  const initPage = async () => {
+    await loadPage('home');
+  };
+
   return {
     state,
     addSection,
@@ -118,5 +127,7 @@ export const useStore = () => {
     duplicateSection,
     savePage,
     loadPage,
+    rebuildSite,
+    initPage,
   };
 };

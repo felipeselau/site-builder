@@ -41,5 +41,47 @@ layout: layouts/base.liquid
           {% endif %}
         </div>
       </section>
+    {% when "features" %}
+      <section class="features" style="padding: 80px 20px; background: #f9fafb;">
+        <div class="container">
+          {% if section.props.title %}
+          <h2 style="font-size: 36px; margin-bottom: 48px; text-align: center;">{{ section.props.title }}</h2>
+          {% endif %}
+          <div class="features-grid" style="display: grid; grid-template-columns: repeat({{ section.props.columns }}, 1fr); gap: 32px;">
+            {% assign features_list = section.props.features | newline_to_br | split: '<br />' %}
+            {% for feature in features_list %}
+              {% if feature != '' %}
+              <div class="feature-card" style="background: white; padding: 32px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                <div style="font-size: 24px; margin-bottom: 16px;">✓</div>
+                <p style="font-size: 16px; color: #374151;">{{ feature }}</p>
+              </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+    {% when "image-text" %}
+      <section class="image-text" style="padding: 80px 20px;">
+        <div class="container" style="display: flex; align-items: center; gap: 64px; {% if section.props.imagePosition == 'right' %}flex-direction: row-reverse;{% endif %}">
+          <div style="flex: 1;">
+            {% if section.props.image %}
+            <img src="{{ section.props.image }}" alt="" style="width: 100%; border-radius: 12px; object-fit: cover;">
+            {% else %}
+            <div style="width: 100%; height: 400px; background: #e5e7eb; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #9ca3af;">Image</div>
+            {% endif %}
+          </div>
+          <div style="flex: 1;">
+            {% if section.props.heading %}
+            <h2 style="font-size: 36px; margin-bottom: 24px;">{{ section.props.heading }}</h2>
+            {% endif %}
+            {% if section.props.content %}
+            <p style="font-size: 18px; line-height: 1.7; color: #6b7280; margin-bottom: 32px;">{{ section.props.content }}</p>
+            {% endif %}
+            {% if section.props.ctaText %}
+            <a href="{{ section.props.ctaLink }}" style="display: inline-block; background: #4f46e5; color: white; padding: 16px 32px; border-radius: 8px; font-weight: 600; text-decoration: none;">{{ section.props.ctaText }}</a>
+            {% endif %}
+          </div>
+        </div>
+      </section>
   {% endcase %}
 {% endfor %}

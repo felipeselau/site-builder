@@ -1,8 +1,10 @@
 import { serve } from "https://deno.land/std@0.213.0/http/server.ts";
 import { join } from "https://deno.land/std@0.213.0/path/mod.ts";
+import { emptyDir, copy } from "https://deno.land/std@0.213.0/fs/mod.ts";
 
 const DATA_DIR = "./_data";
 const PAGES_FILE = join(DATA_DIR, "home.json");
+const SITE_DIR = "./_site";
 
 async function readJson(path: string): Promise<unknown> {
   const text = await Deno.readTextFile(path);
@@ -25,6 +27,15 @@ async function savePageData(data: unknown) {
   await writeJson(PAGES_FILE, data);
 }
 
+async function rebuildSite() {
+  const process = Deno.run({
+    cmd: ["deno", "task", "build"],
+    cwd: Deno.cwd(),
+  });
+  const status = await process.status();
+  return status.success;
+}
+
 async function handler(req: Request): Promise<Response> {
   const url = new URL(req.url);
   
@@ -33,10 +44,20 @@ async function handler(req: Request): Promise<Response> {
     return new Response(JSON.stringify(data), { headers: { "Content-Type": "application/json" } });
   }
   
-  if (url.pathname === "/api/pages" && req.method === "POST") {
+  if ((url.pathname === "/api/pages" || url.pathname === "/api/save") && req.method === "POST") {
     const data = await req.json();
     await savePageData(data);
     return new Response(JSON.stringify({ success: true }), { headers: { "Content-Type": "application/json" } });
+  }
+  
+  if (url.pathname === "/api/rebuild" && req.method === "POST") {
+    const success = await rebuildSite();
+    return new Response(JSON.stringify({ success }), { headers: { "Content-Type": "application/json" } });
+  }
+  
+  if (url.pathname === "/api/pages/home" && req.method === "GET") {
+    const data = await getPageData();
+    return new Response(JSON.stringify(data), { headers: { "Content-Type": "application/json" } });
   }
   
   if (url.pathname === "/admin") {
