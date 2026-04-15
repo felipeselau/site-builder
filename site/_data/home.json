@@ -7,11 +7,22 @@
   },
   "sections": [
     {
-      "id": "1",
+      "id": "tr7w5x81v",
+      "type": "cta",
+      "props": {
+        "title": "Ready to get started?",
+        "subtitle": "Join thousands of satisfied customers today.",
+        "buttonText": "Sign Up Now",
+        "buttonLink": "#",
+        "backgroundColor": "#4f46e5"
+      }
+    },
+    {
+      "id": "pnz2xvdux",
       "type": "hero",
       "props": {
-        "title": "Build Faster with Our Site Builder",
-        "subtitle": "Create beautiful websites in minutes with our easy-to-use block-based editor",
+        "title": "Welcome to Your Site",
+        "subtitle": "Build amazing websites with our site builder",
         "ctaText": "Get Started",
         "ctaLink": "#",
         "backgroundColor": "#1a1a2e",
@@ -19,23 +30,14 @@
       }
     },
     {
-      "id": "2",
-      "type": "content",
+      "id": "p8ndldwoi",
+      "type": "image-text",
       "props": {
-        "heading": "About Our Platform",
-        "content": "We provide the tools you need to build stunning websites without any coding knowledge.",
-        "alignment": "left"
-      }
-    },
-    {
-      "id": "3",
-      "type": "cta",
-      "props": {
-        "title": "Ready to Get Started?",
-        "subtitle": "Join thousands of satisfied customers today.",
-        "buttonText": "Sign Up Free",
-        "buttonLink": "#",
-        "backgroundColor": "#4f46e5"
+        "heading": "Image Section",
+        "content": "Describe your image content here.",
+        "imagePosition": "left",
+        "ctaText": "Learn More",
+        "ctaLink": "#"
       }
     }
   ]
