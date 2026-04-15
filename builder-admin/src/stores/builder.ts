@@ -1,6 +1,5 @@
 import { createStore } from 'solid-js/store';
 import type { PageData, Section } from '../shared/types';
-import { blockRegistry } from '../shared/block-registry';
 
 function generateId(): string {
   return Math.random().toString(36).substr(2, 9);
@@ -10,34 +9,35 @@ const defaultPage: PageData = {
   slug: 'home',
   title: 'Home',
   seo: { title: 'My Site', description: '' },
-  sections: [
-    {
-      id: '1',
-      type: 'hero',
-      props: { ...blockRegistry.hero.defaultProps },
-    },
-  ],
+  sections: [],
 };
 
 const [state, setState] = createStore<{
   page: PageData;
   selectedSectionId: string | null;
   isDirty: boolean;
+  schemas: Record<string, unknown>;
 }>({
   page: defaultPage,
   selectedSectionId: null,
   isDirty: false,
+  schemas: {},
 });
 
 export const useStore = () => {
   const addSection = (type: string) => {
-    const block = blockRegistry[type];
-    if (!block) return;
+    const schema = state.schemas[type] as { settings?: Array<{ id: string; default?: unknown }> } | undefined;
+    if (!schema) return;
+
+    const props: Record<string, unknown> = {};
+    (schema.settings || []).forEach((setting) => {
+      props[setting.id] = setting.default;
+    });
     
     const newSection: Section = {
       id: generateId(),
       type,
-      props: { ...block.defaultProps },
+      props,
     };
     
     setState('page', 'sections', (sections) => [...sections, newSection]);
@@ -113,8 +113,17 @@ export const useStore = () => {
     return response.ok;
   };
 
+  const loadSchemas = async () => {
+    const response = await fetch('/api/schemas');
+    if (response.ok) {
+      const schemas = await response.json();
+      setState('schemas', schemas);
+    }
+  };
+
   const initPage = async () => {
     await loadPage('home');
+    await loadSchemas();
   };
 
   return {
@@ -129,5 +138,6 @@ export const useStore = () => {
     loadPage,
     rebuildSite,
     initPage,
+    loadSchemas,
   };
 };
